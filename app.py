@@ -121,7 +121,7 @@ def get_file_content(filename):
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index.php')
 
 @app.route('/get')
 def get_bot_response():
