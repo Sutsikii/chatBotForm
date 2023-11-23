@@ -4,24 +4,32 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'batfont';
+    src: url(/static/fonts/batmfa__.ttf);
+}
+
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Noto sans', sans-serif;
-    background-color: #070707;
+    font-family: Arial, Helvetica, sans-serif;
+    background: url(imgs/nightCity.jpg);
+    background-position: center;
+    background-size: cover;
     color: #fff;
     height: auto;
     display: flex;
     justify-content: center;
+    font-size: 1em;
 }
 
 #container {
     width: 35%;
     height: 100%;
     margin: 50px;
-    padding: 15px;
+    padding: 20px;
     text-align: center;
-    background: linear-gradient( 0deg, #a8a8a833, #4b464640);
+    background: linear-gradient( 0deg, #4b464640, #a8a8a833);
     box-shadow: 0 8px 32px 0 #0000005e;
     backdrop-filter: blur(4px);
     border-radius: 25px 25px 25px 25px;
@@ -29,15 +37,17 @@ body {
 }
 
 input[type=text],select, textarea {
-    width: 90%;
+    width: 88%;
     padding: 9px;
     font-family: Arial, Helvetica, sans-serif;
     border: none;
     box-sizing: border-box;
     border-radius: 0px 0px 0px 15px;
-    background-color: #767676d9;
+    background-color: #767676a9;
     color: #fff;
     resize: none;
+    height: 50px;
+    margin-bottom: 15px;
 }
 
 input::placeholder {
@@ -53,14 +63,29 @@ input[type="text"]:focus {
     border: 1px solid  #ffffff2e;
     background-color: #000;
     border-radius: 15px 15px 0px 0px;
-    height: 700px;
-    max-height: 700px;
+    height: 600px;
+    max-height: 600px;
     padding: 10px;
+    overflow-y: auto;
     text-align: left;
 }
 
+#chat::-webkit-scrollbar {
+    width: 12px;
+}
+
+#chat::-webkit-scrollbar-thumb {
+    background-color: #888888cc;
+    border-radius: 5px;
+}
+
+#chat::-webkit-scrollbar-track {
+    background-color: #3f3f3f;
+    border-radius: 5px;
+}
+
 button {
-    background-color: #545454d9;
+    background-color: #545454dc;
     color: #fff;
     font-size: 0.8em;
     padding: 9px;
@@ -69,8 +94,10 @@ button {
     right: 0;
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
-    width: 10%;
+    width: 12%;
     box-sizing: border-box;
+    height: 50px;
+    margin-bottom: 15px;
 }
 
 button:hover {
@@ -80,4 +107,12 @@ button:hover {
 #bar {
     display: flex;
     flex-wrap: wrap;
+}
+
+h1 {
+    font-size: 3.5em;
+    padding: 8px;
+    text-transform: uppercase;
+    font-family: 'batfont', sans-serif;
+    text-shadow: #000 8px 3px 10px;
 }

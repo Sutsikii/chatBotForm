@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Chat Bot</title>
 </head>
 
 <body>
     <div id="container">
-        <h1>Chat Bot</h1>
+        <h1>Chat Bot Form</h1>
         <div id="chat-container">
             <div id="chat"></div>
             <div id="bar">
@@ -20,28 +20,7 @@
         </div>
     </div>
 
-    <script>
-    function sendMessage() {
-        var userInput = document.getElementById("user-input").value;
-        document.getElementById("user-input").value = "";
-        document.getElementById("chat").innerHTML += "<p>Vous : " + userInput + "</p>";
-        
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "/get?msg=" + encodeURIComponent(userInput), true);
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                var botResponse = xhr.responseText;
-                document.getElementById("chat").innerHTML += "<p>Bot : " + botResponse + "</p>";
-            }
-        };
-        xhr.send();
-    }
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 
-    function handleKeyDown(event) {
-        if (event.key === "Enter") {
-            sendMessage();
-        }
-    }
-    </script>
 </body>
 </html>

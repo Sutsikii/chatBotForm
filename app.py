@@ -11,6 +11,7 @@ from nltk.stem import WordNetLemmatizer
 import tensorflow as tf
 from tensorflow.keras import Sequential
 from tensorflow.keras.layers import Dense, Dropout
+from unidecode import unidecode
 
 nltk.download("punkt")
 nltk.download("wordnet")
@@ -80,7 +81,8 @@ model.fit(x=train_x, y=train_y, epochs=200, verbose=1)
 
 def clean_text(text):
     tokens = nltk.word_tokenize(text)
-    tokens = [lemmatizer.lemmatize(word) for word in tokens]
+    tokens = [unidecode(word) for word in tokens]
+    tokens = [lemmatizer.lemmatize(word.lower()) for word in tokens if word not in string.punctuation]
     return tokens
 
 def bag_of_words(text, vocab):
