@@ -1,7 +1,5 @@
 from flask import Flask, render_template, request
 import os
-
-os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 import json
 import string
 import random
@@ -79,30 +77,20 @@ model.compile(loss='categorical_crossentropy', optimizer=adam, metrics=["accurac
 
 model.fit(x=train_x, y=train_y, epochs=200, verbose=1)
 
-def clean_text(text):
+def pred_class(text, vocab, labels):
+    bow = [0] * len(vocab)
     tokens = nltk.word_tokenize(text)
     tokens = [unidecode(word) for word in tokens]
     tokens = [lemmatizer.lemmatize(word.lower()) for word in tokens]
-    return tokens
-
-def bag_of_words(text, vocab):
-    tokens = clean_text(text)
-    bow = [0] * len(vocab)
     for w in tokens:
-        for idx, word in enumerate(vocab):
-            if word == w:
-                bow[idx] = 1
-    return np.array(bow)
+        if w in vocab:
+            bow[vocab.index(w)] = 1
 
-def pred_class(text, vocab, labels):
-    bow = bag_of_words(text, vocab)
     result = model.predict(np.array([bow]))[0]
     thresh = 0.2
     y_pred = [[idx, res] for idx, res in enumerate(result) if res > thresh]
     y_pred.sort(key=lambda x: x[1], reverse=True)
-    return_list = []
-    for r in y_pred:
-        return_list.append(labels[r[0]])
+    return_list = [labels[r[0]] for r in y_pred]
     return return_list
 
 def get_response(intents_list, intents_json):
@@ -121,7 +109,9 @@ def get_file_content(filename):
 
 @app.route('/')
 def home():
-    return render_template('index.php')
+    with open('data.json', 'r') as file:
+        data_json_content = file.read()
+    return render_template('index.php', data_json_content=data_json_content)
 
 @app.route('/get')
 def get_bot_response():
@@ -130,7 +120,7 @@ def get_bot_response():
     for intent in data["intents"]:
         if intents and intent["tag"] == intents[0] and "file" in intent:
             file_content = get_file_content(intent["file"])
-            return file_content
+            return f'<pre>{file_content}</pre>'
     
     result = get_response(intents, data)
     return result
