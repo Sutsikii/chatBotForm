@@ -11,8 +11,6 @@ function sendMessage() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var botResponse = xhr.responseText;
             document.getElementById("chat").innerHTML += "<p>Bot : " + botResponse + "</p>";
-            
-            // Ajuster la position du scrolleur pour rester en bas
             chatDiv.scrollTop = chatDiv.scrollHeight;
         }
     };

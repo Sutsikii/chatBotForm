@@ -82,7 +82,7 @@ model.fit(x=train_x, y=train_y, epochs=200, verbose=1)
 def clean_text(text):
     tokens = nltk.word_tokenize(text)
     tokens = [unidecode(word) for word in tokens]
-    tokens = [lemmatizer.lemmatize(word.lower()) for word in tokens if word not in string.punctuation]
+    tokens = [lemmatizer.lemmatize(word.lower()) for word in tokens]
     return tokens
 
 def bag_of_words(text, vocab):
@@ -114,6 +114,11 @@ def get_response(intents_list, intents_json):
             break
     return result
 
+def get_file_content(filename):
+    with open(filename, 'r') as file:
+        content = file.read()
+    return content
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -122,6 +127,11 @@ def home():
 def get_bot_response():
     user_text = request.args.get('msg')
     intents = pred_class(user_text, words, classes)
+    for intent in data["intents"]:
+        if intents and intent["tag"] == intents[0] and "file" in intent:
+            file_content = get_file_content(intent["file"])
+            return file_content
+    
     result = get_response(intents, data)
     return result
 

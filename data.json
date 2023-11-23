@@ -1,6 +1,12 @@
 {
     "intents": [
       {
+        "tag": "php",
+        "patterns": ["Créer un formulaire PHP", "Comment faire un formulaire en PHP", "php form", "formulaire php"],
+        "responses": ["Bien sûr! Je peux vous aider à créer un formulaire PHP. Voici comment faire : "],
+        "file": "example.txt"
+      },
+      {
         "tag": "greeting",
         "patterns": ["Hello", "La forme?", "yo", "Salut", "ça roule?"],
         "responses": ["Salut à toi!", "Hello", "Comment vas tu?", "Salutations!", "Enchanté"]
