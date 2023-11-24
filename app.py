@@ -7,8 +7,8 @@ import nltk
 import numpy as np
 from nltk.stem import WordNetLemmatizer
 import tensorflow as tf
-from tensorflow.keras import Sequential
-from tensorflow.keras.layers import Dense, Dropout
+from keras import Sequential
+from keras.layers import Dense, Dropout
 from unidecode import unidecode
 
 nltk.download("punkt")
