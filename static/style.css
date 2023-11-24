@@ -16,6 +16,7 @@ body {
     background: url(imgs/nightCity.jpg);
     background-position: center;
     background-size: cover;
+    height: 100%;
     color: #fff;
     height: auto;
     display: flex;
@@ -77,12 +78,12 @@ input[type="text"]:focus {
 }
 
 #chat::-webkit-scrollbar-thumb {
-    background-color: #888888cc;
+    background-color: #7a7a7a;
     border-radius: 5px;
 }
 
 #chat::-webkit-scrollbar-track {
-    background-color: #3f3f3f;
+    background-color: #575656;
     border-radius: 5px;
 }
 

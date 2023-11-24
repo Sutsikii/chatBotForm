@@ -23,7 +23,7 @@
       {
         "tag": "name",
         "patterns": ["Quel est ton prénom?", "Comment tu t'appelles?", "Qui es-tu?"],
-        "responses": ["Mon prénom est Miki", "Je suis Miki", "Miki"]
+        "responses": ["Mon prénom est Boty", "Je suis Boty", "Boty"]
       },
       {
         "tag": "goodbye",
