@@ -7,6 +7,7 @@ import nltk
 import numpy as np
 from nltk.stem import WordNetLemmatizer
 import tensorflow as tf
+import keras as keras
 from keras import Sequential
 from keras.layers import Dense, Dropout
 from unidecode import unidecode
