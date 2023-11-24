@@ -3,8 +3,7 @@
       {
         "tag": "php",
         "patterns": ["Créer un formulaire PHP", "Comment faire un formulaire en PHP", "php form", "formulaire php"],
-        "responses": ["Bien sûr! Je peux vous aider à créer un formulaire PHP. Voici comment faire : "],
-        "file": ["example.txt"]
+        "responses": ["Bien sûr! Je peux vous aider à créer un formulaire PHP ! Voici comment faire : "]
       },
       {
         "tag": "greeting",

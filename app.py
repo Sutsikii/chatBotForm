@@ -24,7 +24,7 @@ classes = []
 doc_x = []
 doc_y = []
 
-with open('data.json', 'r') as file:
+with open('data.json', 'r', encoding='utf-8') as file:
     data = json.load(file)
 
 for intent in data["intents"]:
