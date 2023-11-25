@@ -13,7 +13,7 @@
       {
         "tag": "age",
         "patterns": ["Quel âge as-tu?", "C'est quand ton anniversaire?", "Quand es-tu né?", "tu as quel age ?"],
-        "responses": ["J'ai 25 ans", "Je suis né en 1996", "Ma date d'anniversaire est le 3 juillet et je suis né en 1996", "03/07/1996"]
+        "responses": ["Je suis né en 2023", "Ma date d'anniversaire est le 23 novembre et je suis né en 2023", "23/11/2023"]
       },
       {
         "tag": "date",

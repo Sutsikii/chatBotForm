@@ -10,7 +10,7 @@
 
 <body>
     <div id="container">
-        <h1>Chat Bot Form</h1>
+        <h1>Boty le ChatBot</h1>
         <div id="chat-container">
             <div id="chat">
             </div>

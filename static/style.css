@@ -39,7 +39,7 @@ body {
 }
 
 input[type=text],select, textarea {
-    width: 88%;
+    width: 90%;
     padding: 9px;
     font-family: Arial, Helvetica, sans-serif;
     border: none;
@@ -48,7 +48,7 @@ input[type=text],select, textarea {
     background-color: #757575dc;
     color: #fff;
     resize: none;
-    margin-top: 20px;
+    margin-top: 15px;
     margin-bottom: 10px;
     height: 35px;
 }
@@ -97,10 +97,10 @@ button {
     right: 0;
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
-    width: 12%;
+    width: 10%;
     box-sizing: border-box;
     height: 35px;
-    margin-top: 20px;
+    margin-top: 15px;
     font-weight: bold;
 }
 
