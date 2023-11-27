@@ -44,7 +44,7 @@ def call_llama2_api(user_input):
                         },
                         "days": {
                             "type": "number",
-                            "description": "for how many days ahead you wants the forecast",
+                            "description": "for how many days ahead you want the forecast",
                         },
                         "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]},
                     },
@@ -57,14 +57,55 @@ def call_llama2_api(user_input):
     }
 
     response = llama.run(api_request_json)
+    print(f"Llama2 Response: {response.text}")  # Ajout de ce print statement
     return response
 
+
 def process_llama2_response(llama2_response):
-    data = llama2_response.json()
-    if 'choices' in data and data['choices']:
-        return data['choices'][0]['message']['content']
-    else:
-        return "Je ne peux pas fournir d'information pour le moment. Veuillez réessayer plus tard."
+    try:
+        data = llama2_response.json()
+        if 'choices' in data and data['choices']:
+            # Check if the user asked a question related to PHP
+            if any(phrase in data['choices'][0]['message']['content'].lower() for phrase in ['php', 'programming language', 'web development']):
+                # If the user asked a question related to PHP, use the LlamaAPI to retrieve information from an external API
+                api_request_json = {
+                    "messages": [
+                        {"role": "user", "content": "What is PHP?"},
+                    ],
+                    "functions": [
+                        {
+                            "name": "get_information",
+                            "description": "Get information about a topic",
+                            "parameters": {
+                                "type": "object",
+                                "properties": {
+                                    "topic": {
+                                        "type": "string",
+                                        "description": "The topic to get information about"
+                                    },
+                                    "source": {
+                                        "type": "string",
+                                        "description": "The source of the information"
+                                    }
+                                },
+                                "required": ["topic", "source"]
+                            }
+                        }
+                    ],
+                    "stream": False,
+                    "function_call": "get_information"
+                }
+                response = llama.run(api_request_json)
+                if response.ok:
+                    information = response.json()["data"]["results"][0]["information"]
+                    return information
+            else:
+                return data['choices'][0]['message']['content']
+        else:
+            return "Je ne peux pas fournir d'information pour le moment. Veuillez réessayer plus tard."
+    except Exception as e:
+        print(f"Error processing Llama2 response: {e}")
+        return "An error occurred while processing the response."
 
 if __name__ == '__main__':
     app.run(debug=True)
