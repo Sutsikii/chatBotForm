@@ -6,7 +6,6 @@ app = Flask(__name__)
 
 llama = LlamaAPI("LL-KhzmmTe3QZLdq9V2Hx0AoFARaVgB5SKvz4fH4BvaoZaYjaSXaQWydVLGb9r3hgoG")
 
-# Utiliser une liste pour stocker le contexte de la conversation
 conversation_context = []
 
 @app.route('/')
@@ -57,7 +56,7 @@ def call_llama2_api(user_input):
     }
 
     response = llama.run(api_request_json)
-    print(f"Llama2 Response: {response.text}")  # Ajout de ce print statement
+    print(f"Llama2 Response: {response.text}")
     return response
 
 
@@ -65,9 +64,7 @@ def process_llama2_response(llama2_response):
     try:
         data = llama2_response.json()
         if 'choices' in data and data['choices']:
-            # Check if the user asked a question related to PHP
             if any(phrase in data['choices'][0]['message']['content'].lower() for phrase in ['php', 'programming language', 'web development']):
-                # If the user asked a question related to PHP, use the LlamaAPI to retrieve information from an external API
                 api_request_json = {
                     "messages": [
                         {"role": "user", "content": "What is PHP?"},
