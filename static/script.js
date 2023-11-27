@@ -10,7 +10,8 @@ function sendMessage() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var botResponse = xhr.responseText;
-            document.getElementById("chat").innerHTML += "<p>Boty : " + botResponse + "</p>";
+            var botResponseObj = JSON.parse(botResponse);
+            document.getElementById("chat").innerHTML += "<p>Boty : " + botResponseObj.bot_response + "</p>";
             chatDiv.scrollTop = chatDiv.scrollHeight;
         }
     };

@@ -1,34 +1,14 @@
 {
     "intents": [
       {
-        "tag": "php",
-        "patterns": ["Créer un formulaire PHP", "Comment faire un formulaire en PHP", "php form", "formulaire php"],
-        "responses": ["Bien sûr! Je peux vous aider à créer un formulaire PHP ! Voici comment faire : "]
-      },
-      {
-        "tag": "greeting",
-        "patterns": ["Hello", "La forme?", "yo", "Salut", "ça roule?"],
-        "responses": ["Salut à toi!", "Hello", "Comment vas tu?", "Salutations!", "Enchanté"]
-      },
-      {
         "tag": "age",
         "patterns": ["Quel âge as-tu?", "C'est quand ton anniversaire?", "Quand es-tu né?", "tu as quel age ?"],
         "responses": ["Je suis né en 2023", "Ma date d'anniversaire est le 23 novembre et je suis né en 2023", "23/11/2023"]
       },
       {
-        "tag": "date",
-        "patterns": ["Que fais-tu ce week-end?", "Tu veux qu'on fasse un truc ensemble?", "Quels sont tes plans pour cette semaine"],
-        "responses": ["Je suis libre toute la semaine", "Je n'ai rien de prévu", "Je ne suis pas occupé"]
-      },
-      {
         "tag": "name",
         "patterns": ["Quel est ton prénom?", "Comment tu t'appelles?", "Qui es-tu?"],
         "responses": ["Mon prénom est Boty", "Je suis Boty", "Boty"]
-      },
-      {
-        "tag": "goodbye",
-        "patterns": ["bye", "Salut", "see ya", "adios", "cya"],
-        "responses": ["C'était sympa de te parler", "à plus tard", "On se reparle très vite!"]
       }
     ]
   }
