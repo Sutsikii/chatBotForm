@@ -65,11 +65,10 @@ def process_llama2_response(llama2_response):
         data = llama2_response.json()
         if 'choices' in data and data['choices']:
             assistant_message = data['choices'][0]['message']['content']
-            # Échapper le HTML pour afficher le code HTML comme texte brut
             assistant_message_escaped = html.escape(assistant_message)
             return assistant_message_escaped
         else:
-            return "Je ne peux pas fournir d'information pour le moment. Veuillez réessayer plus tard."
+            return "I cannot provide any information at this time. Please try again later."
     except Exception as e:
         print(f"Error processing Llama2 response: {e}")
         return "An error occurred while processing the response."
