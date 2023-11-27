@@ -1,6 +1,7 @@
 import json
 from flask import Flask, render_template, request, jsonify
 from llamaapi import LlamaAPI
+import html
 
 app = Flask(__name__)
 
@@ -59,45 +60,14 @@ def call_llama2_api(user_input):
     print(f"Llama2 Response: {response.text}")
     return response
 
-
 def process_llama2_response(llama2_response):
     try:
         data = llama2_response.json()
         if 'choices' in data and data['choices']:
-            if any(phrase in data['choices'][0]['message']['content'].lower() for phrase in ['php', 'programming language', 'web development']):
-                api_request_json = {
-                    "messages": [
-                        {"role": "user", "content": "What is PHP?"},
-                    ],
-                    "functions": [
-                        {
-                            "name": "get_information",
-                            "description": "Get information about a topic",
-                            "parameters": {
-                                "type": "object",
-                                "properties": {
-                                    "topic": {
-                                        "type": "string",
-                                        "description": "The topic to get information about"
-                                    },
-                                    "source": {
-                                        "type": "string",
-                                        "description": "The source of the information"
-                                    }
-                                },
-                                "required": ["topic", "source"]
-                            }
-                        }
-                    ],
-                    "stream": False,
-                    "function_call": "get_information"
-                }
-                response = llama.run(api_request_json)
-                if response.ok:
-                    information = response.json()["data"]["results"][0]["information"]
-                    return information
-            else:
-                return data['choices'][0]['message']['content']
+            assistant_message = data['choices'][0]['message']['content']
+            # Échapper le HTML pour afficher le code HTML comme texte brut
+            assistant_message_escaped = html.escape(assistant_message)
+            return assistant_message_escaped
         else:
             return "Je ne peux pas fournir d'information pour le moment. Veuillez réessayer plus tard."
     except Exception as e:
