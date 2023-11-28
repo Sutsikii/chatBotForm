@@ -32,28 +32,8 @@ def call_llama2_api(user_input):
             {"role": "user", "content": user_input},
         ],
         "functions": [
-            {
-                "name": "get_current_weather",
-                "description": "Get the current weather in a given location",
-                "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "location": {
-                            "type": "string",
-                            "description": "The city and state, e.g. San Francisco, CA",
-                        },
-                        "days": {
-                            "type": "number",
-                            "description": "for how many days ahead you want the forecast",
-                        },
-                        "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]},
-                    },
-                },
-                "required": ["location", "days"],
-            }
         ],
         "stream": False,
-        "function_call": "get_current_weather",
     }
 
     response = llama.run(api_request_json)
@@ -72,6 +52,7 @@ def process_llama2_response(llama2_response):
     except Exception as e:
         print(f"Error processing Llama2 response: {e}")
         return "An error occurred while processing the response."
-
+    
+    
 if __name__ == '__main__':
     app.run(debug=True)
