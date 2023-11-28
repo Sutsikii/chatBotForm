@@ -15,7 +15,7 @@
             <div id="chat">
             </div>
             <div id="bar">
-            <input type="text" class="bar" id="user-input" placeholder="Je sais faire un formulaire php..." onkeydown="handleKeyDown(event)">
+            <input type="text" class="bar" id="user-input" placeholder="poser moi une question" onkeydown="handleKeyDown(event)">
             <button class="bar" onclick="sendMessage()">Send</button>
             </div>
         </div>
