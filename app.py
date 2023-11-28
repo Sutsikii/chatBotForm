@@ -45,13 +45,16 @@ def process_llama2_response(llama2_response):
         data = llama2_response.json()
         if 'choices' in data and data['choices']:
             assistant_message = data['choices'][0]['message']['content']
-            assistant_message_escaped = html.escape(assistant_message)
-            return assistant_message_escaped
+            # J'ai remarquer dans la réponse du bot des \n pour representer un saut de ligne, du coup a chaque 
+            # \n on place un <br> pour que l'html soit plus propre
+            assistant_message = assistant_message.replace('\n', '<br>')
+            return assistant_message
         else:
             return "I cannot provide any information at this time. Please try again later."
     except Exception as e:
         print(f"Error processing Llama2 response: {e}")
         return "An error occurred while processing the response."
+
     
     
 if __name__ == '__main__':
